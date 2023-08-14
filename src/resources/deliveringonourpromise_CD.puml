@@ -1,39 +1,77 @@
 @startuml
 
-actor Shell
-participant PromiseHistoryClient
-participant GetPromiseHistoryByOrderIdActivity
-participant OrderDao
-participant PromiseDao
-participant OrderManipulationAuthorityClient
-participant DeliveryPromiseServiceClient
+class Shell {
+- promiseHistoryClient PromiseHistoryClient
+- inputHandler ATAUserHandler
 
-Shell -> PromiseHistoryClient : getPromiseHistoryByOrderId(orderId : String)
-PromiseHistoryClient -> GetPromiseHistoryByOrderIdActivity : getPromiseHistoryByOrderId(orderId : String)
-GetPromiseHistoryByOrderIdActivity -> OrderDao : get(orderId : String)
-OrderDao -> OrderManipulationAuthorityClient : getCustomerOrderByOrderId(orderId : String)
+- handleUserRequest()
+- renderPromiseHistoryTable(PromiseHistory)
+- renderOrderTable(Order)
 
-OrderDao <-- OrderManipulationAuthorityClient : OrderResult
-GetPromiseHistoryByOrderIdActivity <-- OrderDao : Order
+}
 
-GetPromiseHistoryByOrderIdActivity -> PromiseDao : get(customerOrderItemId : String)
-PromiseDao -> OrderManipulationAuthorityClient : getCustomerOrderByOrderId(customerOrderItemId : String)
-PromiseDao <-- OrderManipulationAuthorityClient : OrderResultItem
 
-PromiseDao -> OrderManipulationAuthorityClient : getCustomerOrderByOrderId(orderId : String)
-PromiseDao <-- OrderManipulationAuthorityClient : OrderResult
+class PromiseHistoryClient {
+- getPromiseHistoryByOrderIdActivity GetPromiseHistoryByOrderIdActivity
 
-PromiseDao -> PromiseDao : add the shipment date to the promise
++ PromiseHistoryClient(GetPromiseHistoryByOrderIdActivity)
++ getPromiseHistoryByOrderId(String)
 
-PromiseDao -> DeliveryPromiseServiceClient : getDeliveryPromiseByOrderItemId(orderItemId : String)
-PromiseDao <-- DeliveryPromiseServiceClient : Promise
-GetPromiseHistoryByOrderIdActivity <-- PromiseDao : List<Promise>
-GetPromiseHistoryByOrderIdActivity -> GetPromiseHistoryByOrderIdActivity : pack promises into PromiseHistory
+}
 
-PromiseHistoryClient <-- GetPromiseHistoryByOrderIdActivity : PromiseHistory
-Shell <-- PromiseHistoryClient : PromiseHistory
-Shell -> Shell : display
 
+class GetPromiseHistoryByOrderIdActivity {
+- orderDao ReadOnlyDao<String, Order>
+- promiseDao ReadOnlyDao<String, List<Promise>>
+
++ GetPromiseHistoryByOrderIdActivity(ReadOnlyDao<String, Order>
++ getPromiseHistoryByOrderId(String)
+}
+
+
+class OrderDao {
+- omaClient OrderManipulationAuthorityClient
+
++ OrderDao(OrderManipulationAuthorityClient)
++ get(String)
+- convertToOrderItem(OrderResultItem)
+
+}
+
+
+class PromiseDao {
+- dpsClient DeliveryPromiseServiceClient
+- omaClient OrderManipulationAuthorityClient
+
++ PromiseDao(DeliveryPromiseServiceClient, OrderManipulationAuthorityClient)
++ get(String)
+- getDeliveryDateForOrderItem(String)
+}
+
+
+class OrderManipulationAuthorityClient {
+- omaService OrderManipulationAuthority
+
++ OrderManipulationAuthorityClient(OrderManipulationAuthority)
++ getCustomerOrderByOrderId(String)
++ getCustomerOrderItemByOrderItemId(String)
+}
+
+
+class DeliveryPromiseServiceClient {
+- dpService DeliveryPromiseService
+
++ DeliveryPromiseServiceClient(DeliveryPromiseService)
++ getDeliveryPromiseByOrderItemId(String)
+}
+
+Shell --o PromiseHistoryClient
+PromiseHistoryClient --o GetPromiseHistoryByOrderIdActivity
+GetPromiseHistoryByOrderIdActivity --o OrderDao
+OrderDao --o OrderManipulationAuthorityClient
+GetPromiseHistoryByOrderIdActivity --o PromiseDao
+PromiseDao --o OrderManipulationAuthorityClient
+PromiseDao --o DeliveryPromiseServiceClient
 
 
 @enduml
