@@ -1,13 +1,19 @@
 @startuml
 
 class Shell {
-- promiseHistoryClient PromiseHistoryClient
-- inputHandler ATAUserHandler
+    - promiseHistoryClient PromiseHistoryClient
+    - inputHandler ATAUserHandler
 
-- handleUserRequest()
-- renderPromiseHistoryTable(PromiseHistory)
-- renderOrderTable(Order)
+    - handleUserRequest()
+    - renderPromiseHistoryTable(PromiseHistory)
+    - renderOrderTable(Order)
 
+}
+
+class App {
+    + getPromiseHistoryClient()
+    + getPromiseHistoryByOrderIdActivity
+    
 }
 
 
