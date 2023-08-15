@@ -88,12 +88,17 @@ class OrderItem {
 Promise --o PromiseHistory
 
 Shell --o PromiseHistoryClient
-PromiseHistoryClient --o GetPromiseHistoryByOrderIdActivity
-GetPromiseHistoryByOrderIdActivity --o OrderDao
-OrderDao --o OrderManipulationAuthorityClient
-GetPromiseHistoryByOrderIdActivity --o PromiseDao
-PromiseDao --o OrderManipulationAuthorityClient
-PromiseDao --o DeliveryPromiseServiceClient
+PromiseHistoryClient o-- GetPromiseHistoryByOrderIdActivity
+GetPromiseHistoryByOrderIdActivity o-- OrderDao
+OrderDao o-- OrderManipulationAuthorityClient
+GetPromiseHistoryByOrderIdActivity o-- PromiseDao
+PromiseDao o-- OrderManipulationAuthorityClient
+PromiseDao o-- DeliveryPromiseServiceClient
+PromiseHistory -- Order
+Order -- OrderItem
+OrderDao ..|> ReadOnlyDao
+PromiseDao ..|> ReadOnlyDao
+
 
 
 @enduml
