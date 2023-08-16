@@ -65,7 +65,7 @@ public class Shell {
                 System.out.println(shell.handleUserRequest());
             } while (shell.userHasAnotherRequest());
         } catch (Exception e) {
-            System.out.println("Error encountered. Exiting.");
+            //System.out.println("Error encountered. Exiting.");
         }
 
         System.out.println("Thank you for using the Promise History CLI. Have a great day!\n\n");
@@ -86,9 +86,15 @@ public class Shell {
         } while ("".equals(response));
 
         PromiseHistory promiseHistory = promiseHistoryClient.getPromiseHistoryByOrderId(response);
+
+        if (promiseHistory == null) {
+            return String.format(UNKNOWN_ORDER_MESSAGE, response);
+        }
+
         if (promiseHistory.getOrder() == null) {
             return String.format(UNKNOWN_ORDER_MESSAGE, response);
         }
+
         return renderOrderTable(promiseHistory.getOrder()) + renderPromiseHistoryTable(promiseHistory);
     }
 

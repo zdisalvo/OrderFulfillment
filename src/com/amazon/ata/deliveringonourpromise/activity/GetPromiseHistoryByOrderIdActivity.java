@@ -40,12 +40,14 @@ public class GetPromiseHistoryByOrderIdActivity {
         }
 
         Order order = orderDao.get(orderId);
+        try {
+            List<OrderItem> customerOrderItems = order.getCustomerOrderItemList();
 
-        List<OrderItem> customerOrderItems = order.getCustomerOrderItemList();
         OrderItem customerOrderItem = null;
         if (customerOrderItems != null && !customerOrderItems.isEmpty()) {
             customerOrderItem = customerOrderItems.get(0);
         }
+
 
         PromiseHistory history = new PromiseHistory(order);
         if (customerOrderItem != null) {
@@ -56,6 +58,10 @@ public class GetPromiseHistoryByOrderIdActivity {
             }
         }
 
+
         return history;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
