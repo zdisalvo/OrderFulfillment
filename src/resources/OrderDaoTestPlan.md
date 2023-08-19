@@ -39,3 +39,40 @@ Happy case, verifying that the OrderDao can return an order.
 
 ### Then
 * The result is not null
+
+
+### get_forInvalidOrderId_returnsNull
+Use case of an invalid order, returns null
+
+#### Given
+* An order ID that we know is invalid
+
+#### When
+1. We call `get()` with that order ID
+
+### Then
+* The result is null
+### get_forInvalidOrderId_returnsNull
+Use case of an invalid order, returns null
+
+#### Given
+* An order ID that we know is invalid
+
+#### When
+1. We call `get()` with that order ID
+
+### Then
+* The result is null
+
+
+### get_forNullOrderId_returnsNull
+Use case of a null order, returns null
+
+#### Given
+* An order ID that is null
+
+#### When
+1. We call `get()` with that order ID
+
+### Then
+* The result is null

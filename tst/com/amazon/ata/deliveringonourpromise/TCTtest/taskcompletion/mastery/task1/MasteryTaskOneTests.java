@@ -28,13 +28,6 @@ public class MasteryTaskOneTests {
         // GIVEN
         String nonExistentOrderId = "900-0000000-0000000";
 
-        //WHEN
-//        Order order = Order.builder()
-//                .withOrderId(nonExistentOrderId)
-//                .build();
-//
-//        PromiseHistory promiseHistory = new PromiseHistory(order);
-
         PromiseHistory promiseHistory = null;
 
 
