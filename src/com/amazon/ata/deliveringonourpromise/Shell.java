@@ -90,7 +90,6 @@ public class Shell {
         if (promiseHistory == null) {
             return String.format(UNKNOWN_ORDER_MESSAGE, response);
         }
-
         if (promiseHistory.getOrder() == null) {
             return String.format(UNKNOWN_ORDER_MESSAGE, response);
         }

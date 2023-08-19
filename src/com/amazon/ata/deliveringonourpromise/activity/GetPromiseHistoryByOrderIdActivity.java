@@ -61,7 +61,8 @@ public class GetPromiseHistoryByOrderIdActivity {
 
         return history;
         } catch (Exception e) {
-            return null;
+            PromiseHistory promiseHistory = new PromiseHistory(null);
+            return promiseHistory;
         }
     }
 }

@@ -2,6 +2,7 @@ package com.amazon.ata.deliveringonourpromise.TCTtest.taskcompletion.mastery.tas
 
 import com.amazon.ata.deliveringonourpromise.App;
 import com.amazon.ata.deliveringonourpromise.promisehistoryservice.PromiseHistoryClient;
+import com.amazon.ata.deliveringonourpromise.types.Order;
 import com.amazon.ata.deliveringonourpromise.types.Promise;
 import com.amazon.ata.deliveringonourpromise.types.PromiseHistory;
 
@@ -27,8 +28,15 @@ public class MasteryTaskOneTests {
         // GIVEN
         String nonExistentOrderId = "900-0000000-0000000";
 
-        // WHEN
+        //WHEN
+//        Order order = Order.builder()
+//                .withOrderId(nonExistentOrderId)
+//                .build();
+//
+//        PromiseHistory promiseHistory = new PromiseHistory(order);
+
         PromiseHistory promiseHistory = null;
+
 
         // Workaround to prevent the test from printing NPE to STDOUT.
         try {
@@ -37,10 +45,13 @@ public class MasteryTaskOneTests {
             fail("Expected Missed Promise CLI to not throw an exception!");
         }
 
+
         //THEN
-        assertNull(promiseHistory.getOrder(), "Expected Missed Promise CLI to provide result!");
-        List<Promise> promises = promiseHistory.getPromises();
-        assertTrue(null != promises && 0 == promises.size(),
-            "Expected Missed Promise CLI to not print promise history!");
+
+            assertNull(promiseHistory.getOrder(), "Expected Missed Promise CLI to provide result!");
+            List<Promise> promises = promiseHistory.getPromises();
+            assertTrue(null != promises && 0 == promises.size(),
+                    "Expected Missed Promise CLI to not print promise history!");
+
     }
 }
