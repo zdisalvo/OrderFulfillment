@@ -31,13 +31,14 @@ import java.util.List;
  * * orderDate: the timestamp of when the order was placed
  */
 public class Order {
-    public String orderId;
-    public String customerId;
-    public String marketplaceId;
-    public OrderCondition condition;
-    public List<OrderItem> customerOrderItemList = new ArrayList<>();
-    public String shipOption;
-    public ZonedDateTime orderDate;
+    private String orderId;
+    private String customerId;
+    private String marketplaceId;
+    private OrderCondition condition;
+    private List<OrderItem> customerOrderItemList = new ArrayList<>();
+    private String shipOption;
+    private ZonedDateTime orderDate;
+
 
     private Order() { }
 
@@ -46,7 +47,7 @@ public class Order {
      * @return new builder ready for constructing an Order
      */
     public static Builder builder() {
-        return new Builder();
+            return new Builder();
     }
 
     public String getOrderId() {
@@ -71,7 +72,33 @@ public class Order {
      * @return a list containing all of the order items in this order
      */
     public List<OrderItem> getCustomerOrderItemList() {
-        return customerOrderItemList;
+
+        List<OrderItem> copyOrderItemList = new ArrayList<>();
+        copyOrderItemList = List.copyOf(customerOrderItemList);
+
+
+//        for (OrderItem item : copyOrderItemList) {
+//            //OrderItem itemCopy = new OrderItem();
+//
+//            item = OrderItem.builder()
+//                            .withCustomerOrderItemId(item.getOrderId())
+//                            .withOrderId(item.getOrderId())
+//                            .withAsin(item.getAsin())
+//                            .withMerchantId(item.getMerchantId())
+//                            .withQuantity(item.getQuantity())
+//                            .withTitle(item.getTitle())
+//                                    .withIsConfidenceTracked(item.isConfidenceTracked())
+//                                            .withConfidence(item.getConfidence())
+//                                                    .build();
+
+//                    item.getCustomerOrderItemId())
+//                    (item.getCustomerOrderItemId(), item.getOrderId(), item.getAsin(),
+//                    item.getMerchantId(), item.getQuantity(), item.getTitle(), item.isConfidenceTracked(),
+//                    item.getConfidence());
+//
+
+        return copyOrderItemList;
+        //return customerOrderItemList;
     }
 
     public String getShipOption() {
@@ -108,6 +135,7 @@ public class Order {
         private String shipOption;
         private ZonedDateTime orderDate;
 
+
         //CHECKSTYLE:OFF:HiddenField
         //CHECKSTYLE:OFF:JavadocMethod
         public Builder withOrderId(String orderId) {
@@ -137,7 +165,7 @@ public class Order {
          * @return updated Builder
          */
         public Builder withCustomerOrderItemList(List<OrderItem> customerOrderItemList) {
-            this.customerOrderItemList = customerOrderItemList;
+            this.customerOrderItemList = List.copyOf(customerOrderItemList);
             return this;
         }
 
@@ -160,15 +188,18 @@ public class Order {
          */
         public Order build() {
             Order order = new Order();
+                order.orderId = orderId;
+                order.customerId = customerId;
+                order.marketplaceId = marketplaceId;
+                order.condition = condition;
+                order.customerOrderItemList = customerOrderItemList;
+                order.shipOption = shipOption;
+                order.orderDate = orderDate;
 
-            order.orderId = orderId;
-            order.customerId = customerId;
-            order.marketplaceId = marketplaceId;
-            order.condition = condition;
-            order.customerOrderItemList = customerOrderItemList;
-            order.shipOption = shipOption;
-            order.orderDate = orderDate;
-
+//                count++;
+//
+//                return order;
+//            }
             return order;
         }
     }
