@@ -75,24 +75,24 @@ public class Order {
 
         List<OrderItem> copyOrderItemList = List.copyOf(customerOrderItemList);
 
-//        for (OrderItem item : copyOrderItemList) {
-//            //OrderItem itemCopy = new OrderItem();
-//
-//            item = OrderItem.builder()
-//                            .withCustomerOrderItemId(item.getOrderId())
-//                            .withOrderId(item.getOrderId())
-//                            .withAsin(item.getAsin())
-//                            .withMerchantId(item.getMerchantId())
-//                            .withQuantity(item.getQuantity())
-//                            .withTitle(item.getTitle())
-//                                    .withIsConfidenceTracked(item.isConfidenceTracked())
-//                                            .withConfidence(item.getConfidence())
-//                                                    .build();
+        //        for (OrderItem item : copyOrderItemList) {
+        //            //OrderItem itemCopy = new OrderItem();
+        //
+        //            item = OrderItem.builder()
+        //                            .withCustomerOrderItemId(item.getOrderId())
+        //                            .withOrderId(item.getOrderId())
+        //                            .withAsin(item.getAsin())
+        //                            .withMerchantId(item.getMerchantId())
+        //                            .withQuantity(item.getQuantity())
+        //                            .withTitle(item.getTitle())
+        //                                    .withIsConfidenceTracked(item.isConfidenceTracked())
+        //                                            .withConfidence(item.getConfidence())
+        //                                                    .build();
 
-//                    item.getCustomerOrderItemId())
-//                    (item.getCustomerOrderItemId(), item.getOrderId(), item.getAsin(),
-//                    item.getMerchantId(), item.getQuantity(), item.getTitle(), item.isConfidenceTracked(),
-//                    item.getConfidence());
+        //                    item.getCustomerOrderItemId())
+        //                    (item.getCustomerOrderItemId(), item.getOrderId(), item.getAsin(),
+        //                    item.getMerchantId(), item.getQuantity(), item.getTitle(), item.isConfidenceTracked(),
+        //                    item.getConfidence());
 
 
         return copyOrderItemList;
