@@ -47,7 +47,7 @@ public class Order {
      * @return new builder ready for constructing an Order
      */
     public static Builder builder() {
-            return new Builder();
+        return new Builder();
     }
 
     public String getOrderId() {
@@ -73,9 +73,7 @@ public class Order {
      */
     public List<OrderItem> getCustomerOrderItemList() {
 
-        List<OrderItem> copyOrderItemList = new ArrayList<>();
-        copyOrderItemList = List.copyOf(customerOrderItemList);
-
+        List<OrderItem> copyOrderItemList = List.copyOf(customerOrderItemList);
 
 //        for (OrderItem item : copyOrderItemList) {
 //            //OrderItem itemCopy = new OrderItem();
@@ -95,7 +93,7 @@ public class Order {
 //                    (item.getCustomerOrderItemId(), item.getOrderId(), item.getAsin(),
 //                    item.getMerchantId(), item.getQuantity(), item.getTitle(), item.isConfidenceTracked(),
 //                    item.getConfidence());
-//
+
 
         return copyOrderItemList;
         //return customerOrderItemList;
@@ -188,18 +186,14 @@ public class Order {
          */
         public Order build() {
             Order order = new Order();
-                order.orderId = orderId;
-                order.customerId = customerId;
-                order.marketplaceId = marketplaceId;
-                order.condition = condition;
-                order.customerOrderItemList = customerOrderItemList;
-                order.shipOption = shipOption;
-                order.orderDate = orderDate;
+            order.orderId = orderId;
+            order.customerId = customerId;
+            order.marketplaceId = marketplaceId;
+            order.condition = condition;
+            order.customerOrderItemList = customerOrderItemList;
+            order.shipOption = shipOption;
+            order.orderDate = orderDate;
 
-//                count++;
-//
-//                return order;
-//            }
             return order;
         }
     }
