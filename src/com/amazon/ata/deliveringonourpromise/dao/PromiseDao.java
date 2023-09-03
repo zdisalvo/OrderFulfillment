@@ -34,6 +34,7 @@ public class PromiseDao implements ReadOnlyDao<String, List<Promise>> {
 //        this.ofsClient = ofsClient;
 //        this.omaClient = omaClient;
 //    }
+    //Promise Dao
 
     public PromiseDao(List<ServiceClient> clients, OrderManipulationAuthorityClient omaClient)
     {
