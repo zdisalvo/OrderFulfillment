@@ -27,7 +27,7 @@ public class OrderFulfillmentServiceClient implements ServiceClient {
         if (null == orderPromise) {
             return null;
         }
-        System.out.println("customerOrderItemId = " + customerOrderItemId);
+        //System.out.println("customerOrderItemId = " + customerOrderItemId);
 
             return Promise.builder()
                     .withPromiseLatestArrivalDate(orderPromise.getPromiseLatestArrivalDate())
