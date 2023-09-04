@@ -19,9 +19,9 @@ public class OrderFulfillmentServiceClient implements ServiceClient {
     }
 
     /**
-     *
-     * @param customerOrderItemId
-     * @return Promise builder
+     * Builds a fulfillment promise by taking in a
+     * @param customerOrderItemId reference and
+     * @return Promise builder.
      */
     public Promise getDeliveryPromiseByOrderItemId(String customerOrderItemId) {
         OrderPromise orderPromise = ofService.getOrderPromise(customerOrderItemId);
@@ -31,15 +31,15 @@ public class OrderFulfillmentServiceClient implements ServiceClient {
         }
             //System.out.println("customerOrderItemId = " + customerOrderItemId);
 
-            return Promise.builder()
-                    .withPromiseLatestArrivalDate(orderPromise.getPromiseLatestArrivalDate())
-                    .withCustomerOrderItemId(orderPromise.getCustomerOrderItemId())
-                    .withPromiseLatestShipDate(orderPromise.getPromiseLatestShipDate())
-                    .withPromiseEffectiveDate(orderPromise.getPromiseEffectiveDate())
-                    .withIsActive(orderPromise.isActive())
-                    .withPromiseProvidedBy(orderPromise.getPromiseProvidedBy())
-                    .withAsin(orderPromise.getAsin())
-                    .build();
+        return Promise.builder()
+                .withPromiseLatestArrivalDate(orderPromise.getPromiseLatestArrivalDate())
+                .withCustomerOrderItemId(orderPromise.getCustomerOrderItemId())
+                .withPromiseLatestShipDate(orderPromise.getPromiseLatestShipDate())
+                .withPromiseEffectiveDate(orderPromise.getPromiseEffectiveDate())
+                .withIsActive(orderPromise.isActive())
+                .withPromiseProvidedBy(orderPromise.getPromiseProvidedBy())
+                .withAsin(orderPromise.getAsin())
+                .build();
 
     }
 }

@@ -5,7 +5,7 @@ public interface ServiceClient {
 
     /**
      *
-     * @param customerOrderItemId
+     * @param customerOrderItemId reference to
      * @return Promise
      */
     Promise getDeliveryPromiseByOrderItemId(String customerOrderItemId);
