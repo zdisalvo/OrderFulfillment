@@ -4,9 +4,7 @@ import com.amazon.ata.deliveringonourpromise.deliverypromiseservice.DeliveryProm
 import com.amazon.ata.deliveringonourpromise.orderfulfillmentservice.OrderFulfillmentServiceClient;
 import com.amazon.ata.deliveringonourpromise.orderfulfillmentservice.ServiceClient;
 import com.amazon.ata.deliveringonourpromise.ordermanipulationauthority.OrderManipulationAuthorityClient;
-import com.amazon.ata.deliveringonourpromise.types.Order;
 import com.amazon.ata.deliveringonourpromise.types.Promise;
-import com.amazon.ata.deliverypromiseservice.service.DeliveryPromiseService;
 import com.amazon.ata.ordermanipulationauthority.OrderResult;
 import com.amazon.ata.ordermanipulationauthority.OrderResultItem;
 import com.amazon.ata.ordermanipulationauthority.OrderShipment;
@@ -19,25 +17,25 @@ import java.util.List;
  * DAO implementation for Promises.
  */
 public class PromiseDao implements ReadOnlyDao<String, List<Promise>> {
-    private DeliveryPromiseServiceClient dpsClient;
-    private OrderFulfillmentServiceClient ofsClient;
+    //private DeliveryPromiseServiceClient dpsClient;
+    //private OrderFulfillmentServiceClient ofsClient;
     private OrderManipulationAuthorityClient omaClient;
-    private List<ServiceClient> clients = new ArrayList<>();
+    private List<ServiceClient> clients;
 
     /**
      * PromiseDao constructor, accepting service clients for DPS and OMA.
      * @param clients DeliveryPromiseServiceClient & OFS clients for DAO to access DPS
      * @param omaClient OrderManipulationAuthorityClient for DAO to access OMA
      */
-//    public PromiseDao(DeliveryPromiseServiceClient dpsClient, OrderFulfillmentServiceClient ofsClient, OrderManipulationAuthorityClient omaClient) {
-//        this.dpsClient = dpsClient;
-//        this.ofsClient = ofsClient;
-//        this.omaClient = omaClient;
-//    }
+    //    public PromiseDao(DeliveryPromiseServiceClient dpsClient,
+    //    OrderFulfillmentServiceClient ofsClient, OrderManipulationAuthorityClient omaClient) {
+    //        this.dpsClient = dpsClient;
+    //        this.ofsClient = ofsClient;
+    //        this.omaClient = omaClient;
+    //    }
     //Promise Dao
 
-    public PromiseDao(List<ServiceClient> clients, OrderManipulationAuthorityClient omaClient)
-    {
+    public PromiseDao(List<ServiceClient> clients, OrderManipulationAuthorityClient omaClient) {
         this.clients = clients;
         this.omaClient = omaClient;
     }
@@ -65,11 +63,11 @@ public class PromiseDao implements ReadOnlyDao<String, List<Promise>> {
         }
 
         //TODO
-//        Promise ofsPromise = ofsClient.getOrderPromiseByOrderItemId(customerOrderItemId);
-//        if (ofsPromise != null) {
-//            ofsPromise.setDeliveryDate(itemDeliveryDate);
-//            promises.add(ofsPromise);
-//        }
+        //        Promise ofsPromise = ofsClient.getOrderPromiseByOrderItemId(customerOrderItemId);
+        //        if (ofsPromise != null) {
+        //            ofsPromise.setDeliveryDate(itemDeliveryDate);
+        //            promises.add(ofsPromise);
+        //        }
 
 
         return promises;

@@ -57,7 +57,8 @@ public class GetPromiseHistoryByOrderIdActivity {
                     List<Promise> promises = promiseDao.get(customerOrderItem.getCustomerOrderItemId());
 
                     for (Promise promise : promises) {
-                        promise.setConfidence(customerOrderItem.isConfidenceTracked(), customerOrderItem.getConfidence());
+                        promise.setConfidence(customerOrderItem.isConfidenceTracked(),
+                                customerOrderItem.getConfidence());
                         history.addPromise(promise);
                     }
                 }
