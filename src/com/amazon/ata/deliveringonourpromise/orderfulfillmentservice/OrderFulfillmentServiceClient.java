@@ -19,7 +19,7 @@ public class OrderFulfillmentServiceClient implements ServiceClient {
     }
 
     /**
-     * Builds a fulfillment promise by taking in a
+     * Builds a fulfillment promise.
      * @param customerOrderItemId reference and
      * @return Promise builder.
      */
@@ -29,7 +29,7 @@ public class OrderFulfillmentServiceClient implements ServiceClient {
         if (null == orderPromise) {
             return null;
         }
-            //System.out.println("customerOrderItemId = " + customerOrderItemId);
+        //System.out.println("customerOrderItemId = " + customerOrderItemId);
 
         return Promise.builder()
                 .withPromiseLatestArrivalDate(orderPromise.getPromiseLatestArrivalDate())
